@@ -1,15 +1,13 @@
 {
-  "name": "ts-template",
+  "name": "shirodarts-com",
   "version": "0.0.0",
-  "description": "TypeScript project template",
+  "description": "shirodarts.com personal website",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "dev": "vite",
+    "build": "vite build --mode client && vite build",
+    "preview": "wrangler pages dev ./dist",
+    "deploy:cf": "pnpm build && wrangler pages deploy ./dist",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
@@ -19,11 +17,20 @@
   "license": "MIT",
   "devDependencies": {
     "@biomejs/biome": "^2.3.10",
+    "@cloudflare/workers-types": "^4.20251231.0",
+    "@hono/vite-build": "^1.8.0",
+    "@hono/vite-dev-server": "^0.24.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.16"
+    "vite": "^7.3.0",
+    "vitest": "^4.0.16",
+    "wrangler": "^4.54.0"
   },
   "engines": {
     "node": ">=20"
   },
-  "packageManager": "pnpm@9.15.1"
+  "packageManager": "pnpm@9.15.1",
+  "dependencies": {
+    "hono": "^4.11.3",
+    "honox": "^0.1.52"
+  }
 }
