@@ -1,0 +1,7 @@
+# Gitleaks ignore file
+# 偽陽性（False Positive）のfingerprintをここに記載
+# Format: file:ruleID:line
+
+# ドキュメント内のサンプルコマンド（プレースホルダー）
+terraform/SETUP.md:generic-api-key:100
+terraform/SETUP.md:generic-api-key:108

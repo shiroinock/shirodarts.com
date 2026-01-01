@@ -1,0 +1,18 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# 機密情報
+terraform.tfvars
+*.auto.tfvars
+
+# その他
+.DS_Store
+*.log
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json

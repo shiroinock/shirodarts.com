@@ -1,0 +1,29 @@
+# Gitleaks Configuration
+# https://github.com/gitleaks/gitleaks
+
+title = "shirodarts.com gitleaks config"
+
+[extend]
+# デフォルトルールを使用
+useDefault = true
+
+[allowlist]
+description = "許可するパターン"
+paths = [
+  '''\.gitleaksignore$''',
+  '''\.gitignore$''',
+  '''\.terraform\.tfstate\.backup$''',
+  '''terraform/terraform\.tfvars\.example$''',
+]
+
+# 許可するコミット（必要に応じて）
+# commits = [
+#   "commit-hash-here",
+# ]
+
+# 特定の文字列パターンを許可
+regexes = [
+  '''example\.com''',
+  '''EXAMPLE_''',
+  '''your-.*-here''',
+]
