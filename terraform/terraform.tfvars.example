@@ -1,0 +1,16 @@
+# このファイルをコピーして terraform.tfvars を作成してください
+# cp terraform.tfvars.example terraform.tfvars
+
+# Cloudflare設定
+cloudflare_account_id = "your-account-id-here"
+cloudflare_zone_id    = "your-zone-id-here"
+
+# ドメイン設定
+domain = "shirodarts.com"
+
+# Pages設定
+pages_project_name = "shirodarts-com"
+github_repo        = "username/shirodarts.com" # GitHub連携する場合
+
+# 通知設定
+alert_email = "your-email@example.com"

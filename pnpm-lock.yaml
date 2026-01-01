@@ -27,6 +27,9 @@ importers:
       '@hono/vite-dev-server':
         specifier: ^0.24.0
         version: 0.24.0(hono@4.11.3)(miniflare@4.20251210.0)(wrangler@4.54.0(@cloudflare/workers-types@4.20251231.0))
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -1103,6 +1106,11 @@ packages:
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: '>=4.*'
+
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   is-arrayish@0.3.4:
     resolution: {integrity: sha512-m6UrgzFVUYawGBh1dUsWR5M2Clqic9RVXC/9f8ceNlv2IcO9j9J/z8UoCLPqtsPBFNzEpfR3xftohbfqDx8EQA==}
@@ -2232,6 +2240,8 @@ snapshots:
       - miniflare
       - supports-color
       - wrangler
+
+  husky@9.1.7: {}
 
   is-arrayish@0.3.4: {}
 
