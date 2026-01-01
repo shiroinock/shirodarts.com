@@ -19,6 +19,12 @@ export default defineConfig(({ mode }) => {
   } else {
     return {
       publicDir: "public",
+      optimizeDeps: {
+        include: ["honox"],
+      },
+      ssr: {
+        noExternal: ["honox"],
+      },
       plugins: [
         devServer({
           adapter,
