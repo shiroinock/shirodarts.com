@@ -38,11 +38,6 @@
     "gray-matter": "^4.0.3",
     "hono": "^4.11.3",
     "honox": "^0.1.52",
-    "rehype-highlight": "^7.0.2",
-    "rehype-stringify": "^10.0.1",
-    "remark": "^15.0.1",
-    "remark-gfm": "^4.0.1",
-    "remark-html": "^16.0.1",
-    "unified": "^11.0.5"
+    "marked": "^17.0.1"
   }
 }

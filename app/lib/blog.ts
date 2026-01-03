@@ -1,6 +1,4 @@
-import { remark } from "remark";
-import remarkGfm from "remark-gfm";
-import remarkHtml from "remark-html";
+import { marked } from "marked";
 
 export interface PostMetadata {
   title: string;
@@ -101,15 +99,15 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     const { data, content } = parseFrontmatter(rawContent);
 
     // Markdown を HTML に変換
-    const processedContent = await remark()
-      .use(remarkGfm)
-      .use(remarkHtml, { sanitize: false })
-      .process(content);
+    const html = await marked.parse(content, {
+      gfm: true,
+      breaks: true,
+    });
 
     return {
       slug,
       metadata: data,
-      content: processedContent.toString(),
+      content: html,
     };
   } catch (_error) {
     return null;
