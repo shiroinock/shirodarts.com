@@ -1,4 +1,5 @@
 import type {} from "hono";
+import "vite/client";
 
 type Head = {
   title?: string;

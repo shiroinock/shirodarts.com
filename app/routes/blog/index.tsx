@@ -67,8 +67,8 @@ const postTitleClassName = css`
 	}
 `;
 
-export default function Blog() {
-  const posts = getAllPosts();
+export default async function Blog() {
+  const posts = await getAllPosts();
 
   return (
     <div class={containerClassName}>
