@@ -1,5 +1,5 @@
-import { css } from "hono/css";
 import type { Context } from "hono";
+import { css } from "hono/css";
 import { getPostBySlug } from "../../lib/blog";
 
 const containerClassName = css`
@@ -158,40 +158,36 @@ const notFoundClassName = css`
 `;
 
 export default async function BlogPost(c: Context) {
-	const slug = c.req.param("slug");
-	const post = await getPostBySlug(slug);
+  const slug = c.req.param("slug");
+  const post = await getPostBySlug(slug);
 
-	if (!post) {
-		return (
-			<div class={containerClassName}>
-				<nav class={navClassName}>
-					<a href="/">ホーム</a>
-					<span>/</span>
-					<a href="/blog">ブログ</a>
-				</nav>
-				<div class={notFoundClassName}>
-					<h1>404 - 記事が見つかりません</h1>
-				</div>
-			</div>
-		);
-	}
+  if (!post) {
+    return (
+      <div class={containerClassName}>
+        <nav class={navClassName}>
+          <a href="/">ホーム</a>
+          <span>/</span>
+          <a href="/blog">ブログ</a>
+        </nav>
+        <div class={notFoundClassName}>
+          <h1>404 - 記事が見つかりません</h1>
+        </div>
+      </div>
+    );
+  }
 
-	return (
-		<div class={containerClassName}>
-			<nav class={navClassName}>
-				<a href="/">ホーム</a>
-				<span>/</span>
-				<a href="/blog">ブログ</a>
-			</nav>
-			<article>
-				<h1 class={titleClassName}>{post.metadata.title}</h1>
-				<div class={metaClassName}>{post.metadata.date}</div>
-				<div
-					class={contentClassName}
-					// biome-ignore lint/security/noDangerouslySetInnerHtml: Markdown content is from trusted source
-					dangerouslySetInnerHTML={{ __html: post.content }}
-				/>
-			</article>
-		</div>
-	);
+  return (
+    <div class={containerClassName}>
+      <nav class={navClassName}>
+        <a href="/">ホーム</a>
+        <span>/</span>
+        <a href="/blog">ブログ</a>
+      </nav>
+      <article>
+        <h1 class={titleClassName}>{post.metadata.title}</h1>
+        <div class={metaClassName}>{post.metadata.date}</div>
+        <div class={contentClassName} dangerouslySetInnerHTML={{ __html: post.content }} />
+      </article>
+    </div>
+  );
 }

@@ -26,9 +26,7 @@ export default function Home() {
       <h1>Welcome to shirodarts.com</h1>
       <p>Built with HonoX and Cloudflare Pages</p>
       <div class={linksClassName}>
-        <a href="/blog">
-          Blog
-        </a>
+        <a href="/blog">Blog</a>
         <span>|</span>
         <a href="https://github.com/shiroinock" target="_blank" rel="noopener noreferrer">
           GitHub

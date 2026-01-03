@@ -68,30 +68,30 @@ const postTitleClassName = css`
 `;
 
 export default function Blog() {
-	const posts = getAllPosts();
+  const posts = getAllPosts();
 
-	return (
-		<div class={containerClassName}>
-			<nav class={navClassName}>
-				<a href="/">ホーム</a>
-				<span>/</span>
-				<span>ブログ</span>
-			</nav>
-			<h1 class={titleClassName}>Blog</h1>
-			{posts.length === 0 ? (
-				<p>記事がまだありません。</p>
-			) : (
-				<ul class={postListClassName}>
-					{posts.map((post) => (
-						<li key={post.slug} class={postItemClassName}>
-							<div class={postMetaClassName}>{post.metadata.date}</div>
-							<h2 class={postTitleClassName}>
-								<a href={`/blog/${post.slug}`}>{post.metadata.title}</a>
-							</h2>
-						</li>
-					))}
-				</ul>
-			)}
-		</div>
-	);
+  return (
+    <div class={containerClassName}>
+      <nav class={navClassName}>
+        <a href="/">ホーム</a>
+        <span>/</span>
+        <span>ブログ</span>
+      </nav>
+      <h1 class={titleClassName}>Blog</h1>
+      {posts.length === 0 ? (
+        <p>記事がまだありません。</p>
+      ) : (
+        <ul class={postListClassName}>
+          {posts.map((post) => (
+            <li key={post.slug} class={postItemClassName}>
+              <div class={postMetaClassName}>{post.metadata.date}</div>
+              <h2 class={postTitleClassName}>
+                <a href={`/blog/${post.slug}`}>{post.metadata.title}</a>
+              </h2>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }
