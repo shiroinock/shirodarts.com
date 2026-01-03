@@ -8,6 +8,7 @@
     "build": "vite build --mode client && vite build",
     "preview": "wrangler pages dev ./dist",
     "deploy:cf": "pnpm build && wrangler pages deploy ./dist",
+    "new-post": "tsx scripts/new-post.ts",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
@@ -22,6 +23,7 @@
     "@hono/vite-build": "^1.8.0",
     "@hono/vite-dev-server": "^0.24.0",
     "husky": "^9.1.7",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.0",
     "vitest": "^4.0.16",
@@ -32,7 +34,14 @@
   },
   "packageManager": "pnpm@9.15.1",
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "hono": "^4.11.3",
-    "honox": "^0.1.52"
+    "honox": "^0.1.52",
+    "rehype-highlight": "^7.0.2",
+    "rehype-stringify": "^10.0.1",
+    "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-html": "^16.0.1",
+    "unified": "^11.0.5"
   }
 }
