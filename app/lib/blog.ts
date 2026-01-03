@@ -33,8 +33,8 @@ export function getAllPosts(): PostPreview[] {
 
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames
-    .filter((fileName) => fileName.endsWith(".md"))
-    .map((fileName) => {
+    .filter((fileName: string) => fileName.endsWith(".md"))
+    .map((fileName: string) => {
       const slug = fileName.replace(/\.md$/, "");
       const fullPath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -47,7 +47,7 @@ export function getAllPosts(): PostPreview[] {
     });
 
   // 日付降順でソート
-  return allPostsData.sort((a, b) => {
+  return allPostsData.sort((a: PostPreview, b: PostPreview) => {
     if (a.metadata.date < b.metadata.date) {
       return 1;
     }
@@ -90,6 +90,6 @@ export function getAllPostSlugs(): string[] {
 
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames
-    .filter((fileName) => fileName.endsWith(".md"))
-    .map((fileName) => fileName.replace(/\.md$/, ""));
+    .filter((fileName: string) => fileName.endsWith(".md"))
+    .map((fileName: string) => fileName.replace(/\.md$/, ""));
 }

@@ -7,7 +7,7 @@
     "lib": ["ES2023"],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "types": ["@cloudflare/workers-types"],
+    "types": ["@cloudflare/workers-types", "@types/node"],
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -20,6 +20,6 @@
     "noFallthroughCasesInSwitch": true,
     "isolatedModules": true
   },
-  "include": ["app/**/*"],
+  "include": ["app/**/*", "scripts/**/*"],
   "exclude": ["node_modules", "dist"]
 }
