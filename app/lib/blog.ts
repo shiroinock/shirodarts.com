@@ -1,4 +1,3 @@
-import matter from "gray-matter";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import remarkHtml from "remark-html";
@@ -19,6 +18,41 @@ export interface PostPreview {
   metadata: PostMetadata;
 }
 
+/**
+ * シンプルなfrontmatterパーサー
+ */
+function parseFrontmatter(markdown: string): {
+  data: PostMetadata;
+  content: string;
+} {
+  const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
+  const match = markdown.match(frontmatterRegex);
+
+  if (!match) {
+    return {
+      data: { title: "", date: "" },
+      content: markdown,
+    };
+  }
+
+  const frontmatter = match[1] || "";
+  const content = match[2] || "";
+  const data: PostMetadata = { title: "", date: "" };
+
+  // シンプルなYAMLパース（title と date のみ）
+  const titleMatch = frontmatter.match(/title:\s*["'](.*)["']/);
+  const dateMatch = frontmatter.match(/date:\s*["'](.*)["']/);
+
+  if (titleMatch?.[1]) {
+    data.title = titleMatch[1];
+  }
+  if (dateMatch?.[1]) {
+    data.date = dateMatch[1];
+  }
+
+  return { data, content };
+}
+
 // ビルド時にMarkdownファイルを読み込む
 const modules = import.meta.glob("/content/blog/*.md", {
   query: "?raw",
@@ -33,12 +67,12 @@ export async function getAllPosts(): Promise<PostPreview[]> {
 
   for (const [path, resolver] of Object.entries(modules)) {
     const slug = path.replace("/content/blog/", "").replace(/\.md$/, "");
-    const content = (await (resolver as () => Promise<string>)()) as string;
-    const { data } = matter(content);
+    const rawContent = (await (resolver as () => Promise<string>)()) as string;
+    const { data } = parseFrontmatter(rawContent);
 
     posts.push({
       slug,
-      metadata: data as PostMetadata,
+      metadata: data,
     });
   }
 
@@ -63,8 +97,8 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       return null;
     }
 
-    const rawContent = (await resolver()) as string;
-    const { data, content } = matter(rawContent);
+    const rawContent = (await (resolver as () => Promise<string>)()) as string;
+    const { data, content } = parseFrontmatter(rawContent);
 
     // Markdown を HTML に変換
     const processedContent = await remark()
@@ -74,7 +108,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
     return {
       slug,
-      metadata: data as PostMetadata,
+      metadata: data,
       content: processedContent.toString(),
     };
   } catch (_error) {
