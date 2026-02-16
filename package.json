@@ -36,7 +36,7 @@
   "packageManager": "pnpm@9.15.1",
   "dependencies": {
     "hono": "^4.11.3",
-    "honox": "^0.1.52",
+    "honox": "^0.1.54",
     "marked": "^17.0.1"
   }
 }
