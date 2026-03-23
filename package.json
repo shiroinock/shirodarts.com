@@ -37,6 +37,6 @@
   "dependencies": {
     "hono": "^4.11.3",
     "honox": "^0.1.52",
-    "marked": "^17.0.1"
+    "marked": "^17.0.5"
   }
 }
