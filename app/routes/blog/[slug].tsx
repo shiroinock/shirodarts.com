@@ -159,6 +159,9 @@ const notFoundClassName = css`
 
 export default async function BlogPost(c: Context) {
   const slug = c.req.param("slug");
+  if (!slug) {
+    return c.notFound();
+  }
   const post = await getPostBySlug(slug);
 
   if (!post) {
