@@ -1,13 +1,32 @@
 name: Deploy to Cloudflare Pages
 
 on:
-  push:
-    branches: [main]
+  # A preview for each PR.
   pull_request:
     branches: [main]
+  # Production, once CI has passed on main. A merge by GITHUB_TOKEN (the merge reservation) sends no
+  # push event, so a push trigger missed those merges; the reservation runs CI on main again
+  # afterwards (workflow_dispatch), and a person's merge runs it by push, so both reach here.
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+# Production deploys run one at a time, in order; a newer push to a PR replaces its preview.
+concurrency:
+  group: deploy-${{ github.head_ref || 'main' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   deploy:
+    # For workflow_run: only a passing CI of this repository's main, started by a push or a
+    # dispatch (a fork's PR branch can be called main too, but its run's event is pull_request).
+    if: >-
+      github.event_name == 'pull_request' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_repository.full_name == github.repository &&
+       (github.event.workflow_run.event == 'push' || github.event.workflow_run.event == 'workflow_dispatch'))
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -17,6 +36,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          # On workflow_run, the commit CI passed on, not whatever main is by now.
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          persist-credentials: false
 
       - name: Install pnpm
         uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5.0.0

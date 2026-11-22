@@ -13,7 +13,8 @@
 - **内容**: Gitleaksによるシークレットスキャン
 
 ### Deploy (`deploy.yml`)
-- **トリガー**: mainへのpush、PRの作成/更新
+- **トリガー**: PRの作成/更新(プレビュー)、main で CI が通ったとき(本番。`workflow_run`)
+  - マージ予約の自動マージは GITHUB_TOKEN で行うので push のイベントが出ない。マージ予約がそのあと main の CI を走らせ直すので、CI の完了を合図に本番へ出す
 - **内容**: Cloudflare Pagesへの自動デプロイ
 
 ## 🚀 デプロイワークフローのセットアップ
