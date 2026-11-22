@@ -33,7 +33,7 @@
   "engines": {
     "node": ">=24"
   },
-  "packageManager": "pnpm@9.15.1",
+  "packageManager": "pnpm@10.34.5",
   "dependencies": {
     "hono": "^4.12.9",
     "honox": "^0.1.55",
