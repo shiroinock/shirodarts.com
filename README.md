@@ -1,5 +1,7 @@
 # shirodarts.com
 
+[![dept](https://raw.githubusercontent.com/shiroinock/shirodarts.com/dept-badge/dept.svg)](https://github.com/shiroinock/shirodarts.com/blob/dept-badge/dept.md)
+
 個人サイト shirodarts.com のソースコード
 
 ## Tech Stack
