@@ -12,21 +12,50 @@ on:
     types: [completed]
     branches: [main]
 
-# Production deploys run one at a time, in order; a newer push to a PR replaces its preview.
+# One production deploy at a time, and one preview per PR, a newer push replacing the older one.
+# The groups go by event, so a fork's PR from a branch called main cannot touch production's.
 concurrency:
-  group: deploy-${{ github.head_ref || 'main' }}
+  group: deploy-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.number) || 'production' }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  deploy:
-    # For workflow_run: only a passing CI of this repository's main, started by a push or a
-    # dispatch (a fork's PR branch can be called main too, but its run's event is pull_request).
+  # Production follows CI completions, which can come out of order (an older commit's CI may finish
+  # last, or be re-run). Deploy only while the commit is still the tip of main; a newer tip is
+  # deployed when its own CI finishes. For workflow_run: only a passing CI of this repository's
+  # main, started by a push or a dispatch (a fork's PR branch can be called main too, but its
+  # run's event is pull_request).
+  latest:
     if: >-
-      github.event_name == 'pull_request' ||
-      (github.event.workflow_run.conclusion == 'success' &&
-       github.event.workflow_run.head_branch == 'main' &&
-       github.event.workflow_run.head_repository.full_name == github.repository &&
-       (github.event.workflow_run.event == 'push' || github.event.workflow_run.event == 'workflow_dispatch'))
+      github.event_name == 'workflow_run' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main' &&
+      github.event.workflow_run.head_repository.full_name == github.repository &&
+      (github.event.workflow_run.event == 'push' || github.event.workflow_run.event == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      current: ${{ steps.tip.outputs.current }}
+    steps:
+      - name: main の先頭か確かめる
+        id: tip
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          tip=$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha)
+          if [ "$tip" = "$SHA" ]; then
+            echo "current=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "main の先頭は $tip。$SHA は古いので出さない(新しい先頭は、その CI の完了で出る)"
+            echo "current=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    needs: latest
+    if: >-
+      !cancelled() &&
+      (github.event_name == 'pull_request' || needs.latest.outputs.current == 'true')
     runs-on: ubuntu-latest
     permissions:
       contents: read
