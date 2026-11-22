@@ -28,8 +28,8 @@ importers:
         specifier: ^1.10.1
         version: 1.11.1(hono@4.13.19)
       '@hono/vite-dev-server':
-        specifier: ^0.25.1
-        version: 0.25.3(hono@4.13.19)(wrangler@4.165.0(@cloudflare/workers-types@4.20260702.1)(@types/node@25.9.9)(vitest@5.1.1(@types/node@25.9.9)(vite@8.3.8(@types/node@25.9.9)(esbuild@0.28.2)(tsx@4.23.15))))
+        specifier: ^0.26.0
+        version: 0.26.1(hono@4.13.19)(wrangler@4.165.0(@cloudflare/workers-types@4.20260702.1)(@types/node@25.9.9)(vitest@5.1.1(@types/node@25.9.9)(vite@8.3.8(@types/node@25.9.9)(esbuild@0.28.2)(tsx@4.23.15))))
       '@types/node':
         specifier: ^25.5.0
         version: 25.9.9
@@ -413,6 +413,19 @@ packages:
 
   '@hono/vite-dev-server@0.25.3':
     resolution: {integrity: sha512-w3uQ0KQF0i/SDcJ6+d5njEFTr6pbolajrt/GxV0pliYL+4ywiBqiOFRWSpwW3mTuZ80boww7+ZxJTGTBIzyBQg==}
+    engines: {node: '>=18.14.1'}
+    peerDependencies:
+      hono: '*'
+      miniflare: '*'
+      wrangler: '*'
+    peerDependenciesMeta:
+      miniflare:
+        optional: true
+      wrangler:
+        optional: true
+
+  '@hono/vite-dev-server@0.26.1':
+    resolution: {integrity: sha512-OlcWoXjNogKiJhVwV/ftMK87UcsJmIBfmImSdI4e8to/ZdwNHrW9ddKw2OGHjXI5/uS2RaZr+2y+l8T9VFbCmw==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: '*'
@@ -1902,6 +1915,14 @@ snapshots:
       hono: 4.13.19
 
   '@hono/vite-dev-server@0.25.3(hono@4.13.19)(wrangler@4.165.0(@cloudflare/workers-types@4.20260702.1)(@types/node@25.9.9)(vitest@5.1.1(@types/node@25.9.9)(vite@8.3.8(@types/node@25.9.9)(esbuild@0.28.2)(tsx@4.23.15))))':
+    dependencies:
+      '@hono/node-server': 1.19.19(hono@4.13.19)
+      hono: 4.13.19
+      minimatch: 9.0.9
+    optionalDependencies:
+      wrangler: 4.165.0(@cloudflare/workers-types@4.20260702.1)(@types/node@25.9.9)(vitest@5.1.1(@types/node@25.9.9)(vite@8.3.8(@types/node@25.9.9)(esbuild@0.28.2)(tsx@4.23.15)))
+
+  '@hono/vite-dev-server@0.26.1(hono@4.13.19)(wrangler@4.165.0(@cloudflare/workers-types@4.20260702.1)(@types/node@25.9.9)(vitest@5.1.1(@types/node@25.9.9)(vite@8.3.8(@types/node@25.9.9)(esbuild@0.28.2)(tsx@4.23.15))))':
     dependencies:
       '@hono/node-server': 1.19.19(hono@4.13.19)
       hono: 4.13.19
