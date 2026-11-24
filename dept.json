@@ -1,0 +1,217 @@
+{
+  "lockfile": "./pnpm-lock.yaml",
+  "format": "pnpm-lock.yaml",
+  "weights": {
+    "major": 30,
+    "minor": 3,
+    "patch": 1
+  },
+  "total": 91,
+  "lag": {
+    "major": 1,
+    "minor": 15,
+    "patch": 16
+  },
+  "packages": 14,
+  "outdated": 6,
+  "errors": 0,
+  "libyear": 0.24048555656957438,
+  "rows": [
+    {
+      "name": "@types/node",
+      "package": "@types/node",
+      "kind": "dev",
+      "current": "25.9.9",
+      "latest": "26.6.7",
+      "lag": {
+        "major": 1,
+        "minor": 6,
+        "patch": 13
+      },
+      "score": 61,
+      "libyear": 0.14749277511597841
+    },
+    {
+      "name": "@cloudflare/workers-types",
+      "package": "@cloudflare/workers-types",
+      "kind": "dev",
+      "current": "5.20261119.1",
+      "latest": "5.20261124.1",
+      "lag": {
+        "major": 0,
+        "minor": 5,
+        "patch": 0
+      },
+      "score": 15,
+      "libyear": 0.01368478591527873
+    },
+    {
+      "name": "wrangler",
+      "package": "wrangler",
+      "kind": "dev",
+      "current": "4.165.0",
+      "latest": "4.168.0",
+      "lag": {
+        "major": 0,
+        "minor": 3,
+        "patch": 0
+      },
+      "score": 9,
+      "libyear": 0.01551806854767156
+    },
+    {
+      "name": "marked",
+      "package": "marked",
+      "kind": "prod",
+      "current": "18.2.1",
+      "latest": "18.3.0",
+      "lag": {
+        "major": 0,
+        "minor": 1,
+        "patch": 0
+      },
+      "score": 3,
+      "libyear": 0.020249195122569525
+    },
+    {
+      "name": "hono",
+      "package": "hono",
+      "kind": "prod",
+      "current": "4.13.19",
+      "latest": "4.13.21",
+      "lag": {
+        "major": 0,
+        "minor": 0,
+        "patch": 2
+      },
+      "score": 2,
+      "libyear": 0.018825069080031433
+    },
+    {
+      "name": "@biomejs/biome",
+      "package": "@biomejs/biome",
+      "kind": "dev",
+      "current": "2.6.8",
+      "latest": "2.6.9",
+      "lag": {
+        "major": 0,
+        "minor": 0,
+        "patch": 1
+      },
+      "score": 1,
+      "libyear": 0.02471566278804472
+    },
+    {
+      "name": "@hono/vite-build",
+      "package": "@hono/vite-build",
+      "kind": "dev",
+      "current": "1.11.1",
+      "latest": "1.11.1",
+      "lag": {
+        "major": 0,
+        "minor": 0,
+        "patch": 0
+      },
+      "score": 0,
+      "libyear": 0.0
+    },
+    {
+      "name": "@hono/vite-dev-server",
+      "package": "@hono/vite-dev-server",
+      "kind": "dev",
+      "current": "0.26.1",
+      "latest": "0.26.1",
+      "lag": {
+        "major": 0,
+        "minor": 0,
+        "patch": 0
+      },
+      "score": 0,
+      "libyear": 0.0
+    },
+    {
+      "name": "honox",
+      "package": "honox",
+      "kind": "prod",
+      "current": "0.1.63",
+      "latest": "0.1.63",
+      "lag": {
+        "major": 0,
+        "minor": 0,
+        "patch": 0
+      },
+      "score": 0,
+      "libyear": 0.0
+    },
+    {
+      "name": "husky",
+      "package": "husky",
+      "kind": "dev",
+      "current": "9.1.7",
+      "latest": "9.1.7",
+      "lag": {
+        "major": 0,
+        "minor": 0,
+        "patch": 0
+      },
+      "score": 0,
+      "libyear": 0.0
+    },
+    {
+      "name": "tsx",
+      "package": "tsx",
+      "kind": "dev",
+      "current": "4.23.15",
+      "latest": "4.23.15",
+      "lag": {
+        "major": 0,
+        "minor": 0,
+        "patch": 0
+      },
+      "score": 0,
+      "libyear": 0.0
+    },
+    {
+      "name": "typescript",
+      "package": "typescript",
+      "kind": "dev",
+      "current": "7.0.2",
+      "latest": "7.0.2",
+      "lag": {
+        "major": 0,
+        "minor": 0,
+        "patch": 0
+      },
+      "score": 0,
+      "libyear": 0.0
+    },
+    {
+      "name": "vite",
+      "package": "vite",
+      "kind": "dev",
+      "current": "8.3.8",
+      "latest": "8.3.8",
+      "lag": {
+        "major": 0,
+        "minor": 0,
+        "patch": 0
+      },
+      "score": 0,
+      "libyear": 0.0
+    },
+    {
+      "name": "vitest",
+      "package": "vitest",
+      "kind": "dev",
+      "current": "5.1.1",
+      "latest": "5.1.1",
+      "lag": {
+        "major": 0,
+        "minor": 0,
+        "patch": 0
+      },
+      "score": 0,
+      "libyear": 0.0
+    }
+  ]
+}
