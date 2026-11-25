@@ -1,3 +1,9 @@
 # Supply chain: install only versions published at least 3 days ago (in minutes).
 # Renovate waits 7 days for ordinary updates and 3 for security fixes.
 minimumReleaseAge: 4320
+
+# pnpm 11+ fails install on unreviewed build scripts (strictDepBuilds).
+# Keep the pnpm 10 behavior: these scripts were never run and are not needed.
+allowBuilds:
+  esbuild: false
+  workerd: false
